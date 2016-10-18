@@ -1,25 +1,15 @@
 var gulp = require('gulp'),
-	gutil = require('gulp-util'),
-	coffee = require('gulp-coffee'),
-	concat = require('gulp-concat'),
-	compass = require('gulp-compass'),
-	connect = require('gulp-connect'),
-	browserify = require('gulp-browserify'),
-	gulpif = require('gulp-if'),
-	uglify = require('gulp-uglify'),
-	minifyhhtml = require('gulp-minify-html'),
-	jsonminify = require('gulp-jsonminify'),
-	imagemin = require('gulp-imagemin'),
+	$ = require('gulp-load-plugins')({ lazy: true });
 	pngcrush = require('imagemin-pngcrush'),
 	clean = require('del');
 
 var env,
-	coffeeSources,
 	jsSources,
 	sassSources,
 	htmlSources,
 	jsonSources,
 	sassStyle,
+	sourceDir,
 	outputDir;
 
 env = process.env.NODE_ENV || 'development';
@@ -32,7 +22,7 @@ if (env==='development') {
 	sassStyle = 'compressed';
 }
 
-
+sourceDir = 'sources/';
 coffeeSources = ['components/coffee/tagline.coffee'];
 jsSources = ['components/scripts/rclick.js',
 				 'components/scripts/pixgrid.js',
@@ -40,16 +30,9 @@ jsSources = ['components/scripts/rclick.js',
 				 'components/scripts/template.js'
 ];
 sassSources = ['components/sass/style.scss'];
-htmlSources = [outputDir + '*.html'];
-jsonSources = [outputDir + 'js/*.json'];
+htmlSources = [sourceDir + '*.html'];
+jsonSources = [sourceDir + 'js/*.json'];
 
-
-gulp.task('coffee', function(){
-	gulp.src(coffeeSources)
-	.pipe(coffee({bare: true})
-		.on('error', gutil.log))
-	.pipe(gulp.dest('components/scripts'))
-});
 
 gulp.task('js', function(){
 	gulp.src(jsSources)

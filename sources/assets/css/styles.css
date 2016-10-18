@@ -1,0 +1,14 @@
+@import url('bootstrap.min.css');
+
+
+/* GLOBAL */
+body {
+	font-family: 'Abel', sans-serif;
+	color: #222222;
+	-webkit-text-size-adjust: none;
+	-webkit-font-smoothing: antialiased;
+	-ms-text-size-adjust: none;
+	margin: 0px;
+	font-size:14px;
+	background-color:#0f2b50;
+}

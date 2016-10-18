@@ -5,6 +5,7 @@ var gulp = require('gulp'),
 
 var env,
 	jsSources,
+	bootstrapSources,
 	sassSources,
 	htmlSources,
 	jsonSources,
@@ -29,7 +30,11 @@ jsSources = ['components/scripts/rclick.js',
 				 'components/scripts/tagline.js',
 				 'components/scripts/template.js'
 ];
-sassSources = ['components/sass/style.scss'];
+bootstrapSources = {
+	scssSrc = ['./bower_components/bootstrap-sass/'],
+	fonts = ['./bower_components/bootstrap-sass/assets/fonts/**/*'],
+};
+sassSources = ['components/sass/main.scss'];
 htmlSources = [sourceDir + '*.html'];
 jsonSources = [sourceDir + 'js/*.json'];
 

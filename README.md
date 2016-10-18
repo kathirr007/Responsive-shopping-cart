@@ -1,5 +1,6 @@
 # A Simple Responsive Shopping Cart page
-A Simple Responsive Shopping Cart page template
+
+### A Simple Responsive Shopping Cart page template
 
 In order to Check App functionality, ensure that you have **[Git](http://git-scm.com/downloads)** and **[Node.js](http://nodejs.org)** installed.
 

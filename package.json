@@ -1,0 +1,27 @@
+{
+  "name": "responsive-shopping-cart-page",
+  "version": "1.0.0",
+  "description": "A Simple Responsive Shopping Cart page",
+  "main": "index.html",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kathirr007/Responsive-shopping-cart.git"
+  },
+  "keywords": [
+    "Shopping",
+    "cart",
+    "template"
+  ],
+  "author": "Kathirr007",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kathirr007/Responsive-shopping-cart/issues"
+  },
+  "homepage": "https://github.com/kathirr007/Responsive-shopping-cart#readme",
+  "devDependencies": {
+    "browser-sync": "^2.17.3",
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-connect": "^5.0.0"
+  }
+}

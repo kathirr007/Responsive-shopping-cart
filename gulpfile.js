@@ -58,9 +58,9 @@ gulp.task('sass', ['fonts'], function(){
 
 gulp.task('html', function(){
 	gulp.src(sourceDir + '*.html')
-	.pipe($.if(env==='production', minifyhhtml()))
+	.pipe($.if(env==='production', $.htmlmin({collapseWhitespace: true})))
 	.pipe(gulp.dest(outputDir))
-	.pipe(connect.reload());
+	.pipe($.connect.reload());
 });
 gulp.task('images', function(){
 	gulp.src('builds/development/images/**/*.*')

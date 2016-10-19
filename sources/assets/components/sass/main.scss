@@ -1,5 +1,4 @@
 //Compass imports
-@import "compass";
 @import "bootstrap";
  
 //Core partials
@@ -7,3 +6,6 @@
 @import "mixins";
 
 
+.flex {
+	display:flex;
+}

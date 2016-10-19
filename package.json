@@ -19,10 +19,21 @@
   },
   "homepage": "https://github.com/kathirr007/Responsive-shopping-cart#readme",
   "devDependencies": {
+    "bootstrap-sass": "^3.3.7",
     "browser-sync": "^2.17.3",
     "del": "^2.2.2",
     "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-bootstrap-configurator": "^0.3.3",
     "gulp-connect": "^5.0.0",
-    "gulp-sass": "^2.3.2"
+    "gulp-if": "^2.0.1",
+    "gulp-load-plugins": "^1.3.0",
+    "gulp-sass": "^2.3.2",
+    "gulp-sourcemaps": "^2.1.1",
+    "gulp-uglify": "^2.0.0",
+    "gulp-util": "^3.0.7",
+    "imagemin-pngcrush": "^5.0.0",
+    "jquery": "^3.1.1",
+    "node-sass": "^3.10.1"
   }
 }

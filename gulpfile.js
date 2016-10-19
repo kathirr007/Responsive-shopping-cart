@@ -1,7 +1,8 @@
 var gulp = require('gulp'),
 	$ = require('gulp-load-plugins')({ lazy: true });
 	pngcrush = require('imagemin-pngcrush'),
-	clean = require('del');
+	clean = require('del'),
+	jQuery = require('jquery');
 
 var env,
 	jsSources,
@@ -9,63 +10,62 @@ var env,
 	sassSources,
 	htmlSources,
 	jsonSources,
-	sassStyle,
 	sourceDir,
 	outputDir;
 
+var sassOpts = {};
+
 env = process.env.NODE_ENV || 'development';
 
-if (env==='development') {
-	outputDir = 'builds/development/';
-	sassStyle = 'expanded';
-} else {
-	outputDir = 'builds/production/';
-	sassStyle = 'compressed';
-}
 
 sourceDir = 'sources/';
-coffeeSources = ['components/coffee/tagline.coffee'];
-jsSources = ['components/scripts/rclick.js',
-				 'components/scripts/pixgrid.js',
-				 'components/scripts/tagline.js',
-				 'components/scripts/template.js'
-];
-bootstrapSources = {
-	scssSrc = ['./bower_components/bootstrap-sass/'],
-	fonts = ['./bower_components/bootstrap-sass/assets/fonts/**/*'],
-};
-sassSources = ['components/sass/main.scss'];
+if (env == 'development'){
+	outputDir = 'builds/development/';
+} else {
+	outputDir = 'builds/production/';	
+}
+bootstrapSources = './node_modules/bootstrap-sass/';
+fonts = [bootstrapSources + 'assets/fonts/**/*', sourceDir + 'assets/fonts/*.*'];
+
+jsSources = [bootstrapSources + 'assets/javascripts/bootstrap.min.js', sourceDir + 'assets/js/*.js'];
+sassSources = [sourceDir + 'assets/components/sass/main.scss'];
 htmlSources = [sourceDir + '*.html'];
 jsonSources = [sourceDir + 'js/*.json'];
 
+sassOpts = {
+        outputStyle : env == 'development' ? 'nested' : 'compressed',
+        precison: 3,
+        errLogToConsole: true,
+        includePaths: [bootstrapSources + 'assets/stylesheets']
+    };
 
-gulp.task('js', function(){
-	gulp.src(jsSources)
-	.pipe(concat('script.js'))
-	.pipe(browserify())
-	.pipe(gulpif(env==='production', uglify()))
-	.pipe(gulp.dest(outputDir + 'js'))
-	.pipe(connect.reload())
+
+gulp.task('clean', function(){
+	clean(outputDir);
 });
 
-gulp.task('compass', function(){
+
+
+gulp.task('fonts', function(){
+	gulp.src(fonts)
+	.pipe(gulp.dest(outputDir + 'assets/fonts'));
+});
+
+gulp.task('sass', ['fonts'], function(){
 	gulp.src(sassSources)
-	.pipe(compass({
-		sass: 'components/sass',
-		css: outputDir + 'css',
-		images: outputDir + 'images',
-		style: sassStyle
-	}))
-		.on('error', gutil.log)
-	// .pipe(gulp.dest('builds/development/css'))
-	.pipe(connect.reload())
+	.pipe($.sourcemaps.init())
+	.pipe($.sass(sassOpts).on('error', $.sass.logError))
+	.pipe($.autoprefixer({browsers : ["Android 2.3","Android >= 4","Chrome >= 20","Firefox >= 24","Explorer >= 8","iOS >= 6","Opera >= 12","Safari >= 6"]}))
+	.pipe($.sourcemaps.write('./maps'))
+	.pipe(gulp.dest(outputDir + 'assets/css/'))
+	.pipe($.connect.reload());
 });
 
 gulp.task('html', function(){
 	gulp.src('builds/development/*.html')
 	.pipe(gulpif(env==='production', minifyhhtml()))
 	.pipe(gulpif(env==='production', gulp.dest(outputDir)))
-	.pipe(connect.reload())
+	.pipe(connect.reload());
 });
 gulp.task('images', function(){
 	gulp.src('builds/development/images/**/*.*')
@@ -75,14 +75,21 @@ gulp.task('images', function(){
 		use: [pngcrush()]
 	})))
 	.pipe(gulpif(env==='production', gulp.dest(outputDir + 'images')))
-	.pipe(connect.reload())
+	.pipe(connect.reload());
+});
+
+gulp.task('js', function(){
+	gulp.src(jsSources)
+	.pipe($.if(env==='production', $.uglify()))
+	.pipe(gulp.dest(outputDir + 'js'))
+	.pipe($.connect.reload());
 });
 
 gulp.task('json', function(){
 	gulp.src('builds/development/js/*.json')
 	.pipe(gulpif(env==='production', minifyhhtml()))
 	.pipe(gulpif(env==='production', gulp.dest(outputDir + 'js')))
-	.pipe(connect.reload())
+	.pipe(connect.reload());
 });
 
 gulp.task('connect', function(){

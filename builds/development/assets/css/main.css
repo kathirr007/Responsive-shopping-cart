@@ -5853,4 +5853,7 @@ button.close {
   height: 100px;
   background: green; }
 
+p.test {
+  font-size: 2rem; }
+
 /*# sourceMappingURL=maps/main.css.map */

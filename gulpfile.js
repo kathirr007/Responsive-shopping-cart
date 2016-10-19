@@ -1,5 +1,6 @@
 var gulp = require('gulp'),
 	$ = require('gulp-load-plugins')({ lazy: true });
+	browsersync = require('browser-sync'),
 	pngcrush = require('imagemin-pngcrush'),
 	clean = require('del'),
 	jQuery = require('jquery');
@@ -54,15 +55,13 @@ gulp.task('sass', ['fonts'], function(){
 	.pipe($.sass(sassOpts).on('error', $.sass.logError))
 	.pipe($.autoprefixer({browsers : ["Android 2.3","Android >= 4","Chrome >= 20","Firefox >= 24","Explorer >= 8","iOS >= 6","Opera >= 12","Safari >= 6"]}))
 	.pipe($.sourcemaps.write('./maps'))
-	.pipe(gulp.dest(outputDir + 'assets/css/'))
-	.pipe($.connect.reload());
+	.pipe(gulp.dest(outputDir + 'assets/css/'));
 });
 
 gulp.task('html', function(){
 	gulp.src(sourceDir + '*.html')
 	.pipe($.if(env==='production', $.htmlmin({collapseWhitespace: true})))
-	.pipe(gulp.dest(outputDir))
-	.pipe($.connect.reload());
+	.pipe(gulp.dest(outputDir));
 });
 gulp.task('images', function(){
 	gulp.src(imgSources)
@@ -72,22 +71,19 @@ gulp.task('images', function(){
 		svgoPlugin: [{removeViewBox: false}],
 		use: [pngcrush()]
 	})))
-	.pipe(gulp.dest(outputDir + 'assets/images'))
-	.pipe($.connect.reload());
+	.pipe(gulp.dest(outputDir + 'assets/images'));
 });
 
 gulp.task('js', function(){
 	gulp.src(jsSources)
 	.pipe($.if(env==='production', $.uglify()))
-	.pipe(gulp.dest(outputDir + 'js'))
-	.pipe($.connect.reload());
+	.pipe(gulp.dest(outputDir + 'js'));
 });
 
 gulp.task('json', function(){
 	gulp.src('builds/development/js/*.json')
 	.pipe($.if(env==='production', $.jsonminify()))
-	.pipe(gulp.dest(outputDir + 'assets/json'))
-	.pipe($.connect.reload());
+	.pipe(gulp.dest(outputDir + 'assets/json'));
 });
 
 gulp.task('connect', function(){
@@ -97,12 +93,23 @@ gulp.task('connect', function(){
 	});
 });
 
-gulp.task('watch', function(){
-	gulp.watch(jsSources, ['js']);
-	gulp.watch(jsonSources, ['json']);
-	gulp.watch(sassSources, ['sass']);
-	gulp.watch(imgSources, ['images']);
-	gulp.watch(htmlSources, ['html']);
+gulp.task('browsersync', function(){
+	browsersync({
+    server: {
+        baseDir: outputDir,
+        index: 'index.html'
+    },
+    open: true,
+    notify: true
+})
 });
 
-gulp.task('default', ['html', 'sass', 'js', 'images', 'connect',  'json', 'watch']);
+gulp.task('watch', function(){
+	gulp.watch(jsSources, ['js', browsersync.reload]);
+	gulp.watch(jsonSources, ['json', browsersync.reload]);
+	gulp.watch(sassSources, ['sass', browsersync.reload]);
+	gulp.watch(imgSources, ['images', browsersync.reload]);
+	gulp.watch(htmlSources, ['html', browsersync.reload]);
+});
+
+gulp.task('default', ['html', 'sass', 'js', 'images', 'browsersync',  'json', 'watch']);

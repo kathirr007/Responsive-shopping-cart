@@ -26,7 +26,7 @@ fonts = [bootstrapSources + 'assets/fonts/**/*', sourceDir + 'assets/fonts/*.*']
 imgSources = [sourceDir + 'assets/images/**/*'];
 
 jsSources = [bootstrapSources + 'assets/javascripts/bootstrap.min.js', sourceDir + 'assets/js/*.js'];
-sassSources = [sourceDir + 'assets/components/sass/main.scss'];
+sassSources = [sourceDir + 'assets/scss/**/*'];
 htmlSources = [sourceDir + '*.html'];
 jsonSources = [sourceDir + 'assets/json/*.json'];
 
@@ -77,11 +77,11 @@ gulp.task('images', function(){
 gulp.task('js', function(){
 	gulp.src(jsSources)
 	.pipe($.if(env==='production', $.uglify()))
-	.pipe(gulp.dest(outputDir + 'js'));
+	.pipe(gulp.dest(outputDir + 'assets/js'));
 });
 
 gulp.task('json', function(){
-	gulp.src('builds/development/js/*.json')
+	gulp.src(jsonSources)
 	.pipe($.if(env==='production', $.jsonminify()))
 	.pipe(gulp.dest(outputDir + 'assets/json'));
 });

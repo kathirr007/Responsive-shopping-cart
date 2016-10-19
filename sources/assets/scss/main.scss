@@ -1,0 +1,20 @@
+//Compass imports
+@import "bootstrap";
+ 
+//Core partials
+@import "partials/variables";
+@import "partials/base";
+@import "partials/mixins";
+
+
+.flex {
+	display:flex;
+	height: 100px;
+	background:green;
+
+}
+
+header.page-title h1 {
+	font-size:5rem;
+	text-transform:uppercase;
+}

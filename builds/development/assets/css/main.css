@@ -5845,6 +5845,11 @@ button.close {
   .hidden-print {
     display: none !important; } }
 
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  color: #444444; }
+
 .flex {
   display: -webkit-box;
   display: -webkit-flex;
@@ -5853,7 +5858,8 @@ button.close {
   height: 100px;
   background: green; }
 
-p.test {
-  font-size: 2rem; }
+header.page-title h1 {
+  font-size: 5rem;
+  text-transform: uppercase; }
 
 /*# sourceMappingURL=maps/main.css.map */

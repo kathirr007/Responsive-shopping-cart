@@ -16,14 +16,9 @@ var env,
 var sassOpts = {};
 
 env = process.env.NODE_ENV || 'development';
-
-
 sourceDir = 'sources/';
-if (env == 'development'){
-	outputDir = 'builds/development/';
-} else {
-	outputDir = 'builds/production/';	
-}
+outputDir = env == 'development' ? 'builds/development/' : 'builds/production/';
+
 bootstrapSources = './node_modules/bootstrap-sass/';
 fonts = [bootstrapSources + 'assets/fonts/**/*', sourceDir + 'assets/fonts/*.*'];
 
@@ -62,9 +57,9 @@ gulp.task('sass', ['fonts'], function(){
 });
 
 gulp.task('html', function(){
-	gulp.src('builds/development/*.html')
-	.pipe(gulpif(env==='production', minifyhhtml()))
-	.pipe(gulpif(env==='production', gulp.dest(outputDir)))
+	gulp.src(sourceDir + '*.html')
+	.pipe($.if(env==='production', minifyhhtml()))
+	.pipe(gulp.dest(outputDir))
 	.pipe(connect.reload());
 });
 gulp.task('images', function(){

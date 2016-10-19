@@ -5849,6 +5849,8 @@ button.close {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
-  display: flex; }
+  display: flex;
+  height: 100px;
+  background: green; }
 
 /*# sourceMappingURL=maps/main.css.map */

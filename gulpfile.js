@@ -10,6 +10,7 @@ var env,
 	sassSources,
 	htmlSources,
 	jsonSources,
+	imgSources,
 	sourceDir,
 	outputDir;
 
@@ -21,11 +22,12 @@ outputDir = env == 'development' ? 'builds/development/' : 'builds/production/';
 
 bootstrapSources = './node_modules/bootstrap-sass/';
 fonts = [bootstrapSources + 'assets/fonts/**/*', sourceDir + 'assets/fonts/*.*'];
+imgSources = [sourceDir + 'assets/images/**/*'];
 
 jsSources = [bootstrapSources + 'assets/javascripts/bootstrap.min.js', sourceDir + 'assets/js/*.js'];
 sassSources = [sourceDir + 'assets/components/sass/main.scss'];
 htmlSources = [sourceDir + '*.html'];
-jsonSources = [sourceDir + 'js/*.json'];
+jsonSources = [sourceDir + 'assets/json/*.json'];
 
 sassOpts = {
         outputStyle : env == 'development' ? 'nested' : 'compressed',
@@ -63,14 +65,15 @@ gulp.task('html', function(){
 	.pipe($.connect.reload());
 });
 gulp.task('images', function(){
-	gulp.src('builds/development/images/**/*.*')
-	.pipe(gulpif(env==='production', imagemin({
+	gulp.src(imgSources)
+	.pipe($.newer(outputDir + 'assets/images'))
+	.pipe($.if(env==='production', $.imagemin({
 		progressive: true,
 		svgoPlugin: [{removeViewBox: false}],
 		use: [pngcrush()]
 	})))
-	.pipe(gulpif(env==='production', gulp.dest(outputDir + 'images')))
-	.pipe(connect.reload());
+	.pipe(gulp.dest(outputDir + 'assets/images'))
+	.pipe($.connect.reload());
 });
 
 gulp.task('js', function(){
@@ -82,25 +85,24 @@ gulp.task('js', function(){
 
 gulp.task('json', function(){
 	gulp.src('builds/development/js/*.json')
-	.pipe(gulpif(env==='production', minifyhhtml()))
-	.pipe(gulpif(env==='production', gulp.dest(outputDir + 'js')))
-	.pipe(connect.reload());
+	.pipe($.if(env==='production', $.jsonminify()))
+	.pipe(gulp.dest(outputDir + 'assets/json'))
+	.pipe($.connect.reload());
 });
 
 gulp.task('connect', function(){
-	connect.server({
+	$.connect.server({
 		root: outputDir,
 		livereload: true
 	});
 });
 
 gulp.task('watch', function(){
-	gulp.watch(coffeeSources, ['coffee']);
 	gulp.watch(jsSources, ['js']);
-	gulp.watch('builds/development/js/*.json', ['json']);
-	gulp.watch('components/sass/*.scss', ['compass']);
-	gulp.watch('builds/development/images/**/*.*', ['images']);
-	gulp.watch('builds/development/*.html', ['html']);
+	gulp.watch(jsonSources, ['json']);
+	gulp.watch(sassSources, ['sass']);
+	gulp.watch(imgSources, ['images']);
+	gulp.watch(htmlSources, ['html']);
 });
 
-gulp.task('default', ['coffee', 'js', 'compass', 'images', 'connect', 'html', 'json', 'watch']);
+gulp.task('default', ['html', 'sass', 'js', 'images', 'connect',  'json', 'watch']);

@@ -13,6 +13,7 @@ var env,
 	jsonSources,
 	imgSources,
 	sourceDir,
+	nodeModules,
 	outputDir;
 
 var sassOpts = {};
@@ -21,11 +22,12 @@ env = process.env.NODE_ENV || 'development';
 sourceDir = 'sources/';
 outputDir = env == 'development' ? 'builds/development/' : 'builds/production/';
 
-bootstrapSources = './node_modules/bootstrap-sass/';
+nodeModules = './node_modules/'
+bootstrapSources = nodeModules + 'bootstrap-sass/';
 fonts = [bootstrapSources + 'assets/fonts/**/*', sourceDir + 'assets/fonts/*.*'];
 imgSources = [sourceDir + 'assets/images/**/*'];
 
-jsSources = [bootstrapSources + 'assets/javascripts/bootstrap.min.js', sourceDir + 'assets/js/*.js'];
+jsSources = [nodeModules + 'jquery/dist/jquery.min.js', bootstrapSources + 'assets/javascripts/bootstrap.min.js', sourceDir + 'assets/js/*.js'];
 sassSources = [sourceDir + 'assets/scss/**/*'];
 htmlSources = [sourceDir + '*.html'];
 jsonSources = [sourceDir + 'assets/json/*.json'];

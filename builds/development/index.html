@@ -2,107 +2,162 @@
 <html lang="en">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <head>
-	<meta charset="UTF-8">
-	<title>Responsive Shopping Cart Template</title>
-	<link rel="stylesheet" href="assets/css/main.css">
+    <meta charset="UTF-8">
+    <title>Responsive Shopping Cart Template</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/scripts.js"></script>
 </head>
+
 <body>
-	<div class="container">
-    <header class="page-title">
-        <h1 class="col-xs-7 col-md-12 pull-left">Your Shopping Bag</h1> <h2 class="col-xs-5 total-items visible-xs visible-sm pull-right">Total Items</h2>
-    </header>
-    <main class="clearfix">
-        <div>
-            <div class="cart-header row hidden-xs hidden-sm">
-                <div class="col-sm-7 total-items">Total Items</div>
-                <div class="col-sm-5">
-                	<div class="row">
-                    	<div class="col-sm-4 text-center">Size</div>
-						<div class="col-sm-4 text-center">Quantity</div>
-						<div class="col-sm-4 text-center">Price</div>
+    <div class="container">
+        <header class="page-title">
+            <h1 class="col-xs-7 col-md-12 pull-left">Your Shopping Bag</h1>
+            <h2 class="col-xs-5 total-items visible-xs visible-sm pull-right">Total Items</h2>
+        </header>
+        <main class="clearfix cart">
+            <div>
+                <div class="cart-header row hidden-xs hidden-sm">
+                    <div class="col-sm-7 total-items">Total Items</div>
+                    <div class="col-sm-5">
+                        <div class="row">
+                            <div class="col-sm-4 text-center">Size</div>
+                            <div class="col-sm-4 text-center">Quantity</div>
+                            <div class="col-sm-4 text-center">Price</div>
+                        </div>
                     </div>
                 </div>
-            </div>    
-            <div class="cart-items clearfix">
-                    <div class="col-xs-12 col-sm-4 col-md-2 text-center"><img src="assets/images/T1.jpg" width="151" height="154" alt=""/></div>
+                <div class="cart-items clearfix">
+                    <div class="col-xs-12 col-sm-4 col-md-2 text-center"><img src="assets/images/T1.jpg" width="151" height="154" alt="" /></div>
                     <div class="col-xs-10 col-xs-offset-1  col-sm-offset-0 col-sm-8 col-md-10">
-                   	<div class="row">
-                        <div class="col-md-6 item-short-desc">
-                            <h3 class="no-margin">Solid Green Cotton Tshirt</h3>
-                            <p class="no-margin">Style #: MS13KT1906</p>
-                            <p class="no-margin">Colour: Blue</p>
+                        <div class="row">
+                            <div class="col-md-6 item-short-desc">
+                                <h3 class="no-margin">Solid Green Cotton Tshirt</h3>
+                                <p class="no-margin">Style #: MS13KT1906</p>
+                                <p class="no-margin">Colour: Blue</p>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-4 text-center">
+                                        <span class="visible-xs visible-sm">Size: </span>
+                                        <select class="form-control">
+                                            <option value="S" selected>S</option>
+                                            <option value="M">M</option>
+                                            <option value="XL">XL</option>
+                                            <option value="XXL">XXL</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4 text-center"><span class="visible-xs visible-sm">QTY: </span>
+                                        <input type="text" class="form-control text-center" id="exampleInput" value="2">
+                                    </div>
+                                    <div class="col-md-4 text-center"><span class="glyphicon glyphicon-usd"></span>19.9</div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-md-6">
-							<div class="row">
-							<div class="col-md-4 text-center">
-								<span class="visible-xs visible-sm">Size: </span>
-								<select class="form-control">
-								<option value="S" selected>S</option>
-								<option value="M">M</option>
-								<option value="XL">XL</option>
-								<option value="XXL">XXL</option>
-							</select>
-							</div>
-							<div class="col-md-4 text-center"><span class="visible-xs visible-sm">QTY: </span><input type="text" class="form-control text-center" id="exampleInput" value="2"></div>
-							<div class="col-md-4 text-center"><span class="glyphicon glyphicon-usd"></span>19.9</div>
-							</div>
-                    	</div>
-                        </div>
-                    <div class="row">
-                        <div class="col-md-6 col-lg-6">
-                            <div class="nav">
-                                <a href="#" class="btn btn-default">Edit</a>
-                                <a href="#" class="btn btn-default"><span></span>Remove</a>
-                                <a href="#" class="btn btn-default">Save for later</a>
+                        <div class="row">
+                            <div class="col-md-6 col-lg-6">
+                                <div class="nav">
+                                    <a href="#" class="btn btn-default">Edit</a>
+                                    <a href="#" class="btn btn-default"><span></span>Remove</a>
+                                    <a href="#" class="btn btn-default">Save for later</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    </div>
+                </div>
             </div>
-            <div class="cart-items clearfix">
-                    <div class="col-xs-12 col-sm-4 col-md-2 text-center"><img src="assets/images/T1.jpg" width="151" height="154" alt=""/></div>
-                    <div class="col-xs-10 col-xs-offset-1  col-sm-offset-0 col-sm-8 col-md-10">
-                   	<div class="row">
-                        <div class="col-md-6 item-short-desc">
-                            <h3 class="no-margin">Solid Green Cotton Tshirt</h3>
-                            <p class="no-margin">Style #: MS13KT1906</p>
-                            <p class="no-margin">Colour: Blue</p>
-                        </div>
-                        <div class="col-md-6">
-							<div class="row">
-							<div class="col-md-4 text-center">
-								<span class="visible-xs visible-sm">Size: </span>
-								<select class="form-control">
-								<option value="S" selected>S</option>
-								<option value="M">M</option>
-								<option value="XL">XL</option>
-								<option value="XXL">XXL</option>
-							</select>
-							</div>
-							<div class="col-md-4 text-center"><span class="visible-xs visible-sm">QTY: </span><input type="text" class="form-control text-center" id="exampleInput" value="2"></div>
-							<div class="col-md-4 text-center"><span class="glyphicon glyphicon-usd"></span>19.9</div>
-							</div>
-                    	</div>
-                        </div>
-                    <div class="row">
-                        <div class="col-md-6 col-lg-6">
-                            <div class="nav">
-                                <a href="#" class="btn btn-default">Edit</a>
-                                <a href="#" class="btn btn-default"><span></span>Remove</a>
-                                <a href="#" class="btn btn-default">Save for later</a>
+        </main>
+        <footer class="clearfix cart-checkout">
+            <div class="row">
+                <aside class="col-sm-3 hidden-xs">
+                    <p><strong>Need help
+    or have a question</strong></p>
+                    <p>Call customer service at 1-800-555-5555
+                    </p>
+                    <p><a href="#">chat with one of our stylists</a></p>
+                    <p><a href="#">see return and exchange policy</a></p>
+                </aside>
+                <section class="col-sm-7 col-sm-push-2">
+                    <div class="clearfix">
+                        <div class="checkout-header row">
+                            <div class="col-sm-6 no-padding">Enter Promotion code or Gift Card</div>
+                            <div class="col-sm-6 text-right">
+                                <div class="row">
+                                    <div class="col-sm-7 text-center no-padding">
+                                        <input class="form-control" type="text" vk_14437="subscribed">
+                                    </div>
+                                    <div class="col-sm-5 text-right no-padding">
+                                        <button class="btn btn-default">Apply</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                        <div class="clearfix checkout-body">
+                            <div class="col-xs-11 col-xs-offset-1  col-sm-offset-0 col-sm-12 no-padding">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <h6 class="no-margin">SUBTOTAL</h6>
+                                    </div>
+                                    <div class="col-sm-6 text-right">
+                                        <span class="glyphicon glyphicon-usd"></span>19.9
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <h6 class="no-margin">PROMOTION CODE JF10 APPLIED </h6>
+                                    </div>
+                                    <div class="col-sm-6 text-right">
+                                        <span class="glyphicon glyphicon-usd"></span>19.9
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <h6 class="no-margin">ESTIMATED SHIPPING*</h6>
+                                        <p>You qualified for free shipping because your order is over $50*</p>
+                                    </div>
+                                    <div class="col-sm-6 text-right">
+                                        FREE
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix checkout-total">
+                            <div class="col-xs-11 col-xs-offset-1  col-sm-offset-0 col-sm-12 no-padding">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <h4 class="no-margin">ESTIMATED TOTAL</h4>
+                                        <p>Tax will be applied during Total</p>
+                                    </div>
+                                    <div class="col-sm-6 text-right">
+                                        <span class="glyphicon glyphicon-usd"></span>19.9
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="checkout-footer">
+                        	<div class="row">
+                            <div class="col-sm-8 text-right pull-right">
+                            	<div class="row">
+                                	<div class="col-sm-7 clearfix"><a href="#" class="block">Continue Shopping</a></div>
+                                	<div class="col-sm-5"><button class="btn btn-primary">Checkout</button></div>
+                                </div>
+                            </div>
+                        </div>
+                        	<div class="row">
+                            <div class="col-sm-10 text-right pull-right">
+                            	<div class=""> Secure checkout Shopping is always safe and secure</div>
+                            </div>
+                        </div>
+                        </div>                        
                     </div>
-                    </div>
+                </section>
             </div>
-                          
-        </div>
-    </main>
-
-</div>
-
+        </footer>
+    </div>
 </body>
+
 </html>

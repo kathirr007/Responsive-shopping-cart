@@ -8,33 +8,47 @@
 @import "partials/mediaqueries";
 
 
-.flex {
-	display:flex;
-	height: 100px;
-	background:green;
-
-}
 header.page-title {
 	height:7em;
 }
 header.page-title h1 {
 	font-size:5rem;
 	text-transform:uppercase;
-		
+}
+
+.cart {
+	border-bottom:5px solid $bordercolor;
+	padding-bottom:1em;
+	margin-bottom:(50em/14);
 }
 
 .cart-header {
-	border-top:1px solid #ddd;
+	border-top:1px solid $bordercolor;
 	padding:10px;
 	font-weight:bold;
-	border-bottom:5px solid #ddd;
+	border-bottom:5px solid $bordercolor;
 	margin:0 0 1em 0;
 }
-
+.checkout-header.row, .checkout-total {
+	padding:0 0 10px 0px;
+/* 	font-weight:bold; */
+	border-bottom:5px solid $bordercolor !important;
+	margin:0 0 1em 0;
+}
+.checkout-body {
+	border-bottom:1px solid $bordercolor;
+	margin-bottom:1em;
+}
+.checkout-body .row, .checkout-footer .row {
+	padding:0 0px 10px 0px;
+}
 .cart-items {
 	padding:1.5em 0;
 /* 	margin-bottom:1em; */
-	border-bottom:solid 1px #ddd;
+	border-bottom:solid 1px $basecolor;
+}
+.cart-items:last-child{
+	border-bottom:0;
 }
 
 .cart-items select {

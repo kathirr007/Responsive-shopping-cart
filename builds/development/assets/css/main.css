@@ -5901,6 +5901,11 @@ header.page-title h1 {
   border-bottom: 5px solid #ddd;
   margin: 0 0 1em 0; }
 
+.cart-items {
+  padding: 1.5em 0;
+  /* 	margin-bottom:1em; */
+  border-bottom: solid 1px #ddd; }
+
 .cart-items select {
   padding: 6px; }
 

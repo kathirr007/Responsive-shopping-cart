@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <head>
 	<meta charset="UTF-8">
 	<title>Responsive Shopping Cart Template</title>
@@ -10,90 +12,58 @@
 <body>
 	<div class="container">
     <header class="page-title">
-        <h1>Your Shopping Bag</h1>
+        <h1 class="col-xs-7 col-md-12 pull-left">Your Shopping Bag</h1> <h2 class="col-xs-5 total-items visible-xs visible-sm pull-right">Total Items</h2>
     </header>
-    <div class="row">
-        <div class="col-sm-12 col-md-10">
-            <table class="table cart-table">
-                <thead>
-                    <tr>
-                        <th class="total-items">Total Items</th>
-                        <th class="hidden-xs">Quantity</th>
-                        <th class="text-center hidden-xs">Price</th>
-                        <th class="text-center hidden-xs">Total</th>
-                        <th class="hidden-xs"></th>
-                    </tr>
-                </thead>
-            </table>    
-            <table class="table table-hover">
-                
-                <tbody>
-                    <tr>
-                        <td class="col-sm-8 col-md-6">
-                        <div class="media">
-                            <a class="thumbnail pull-left" href="#"> <img class="media-object" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style="width: 72px; height: 72px;"> </a>
-                            <div class="media-body">
-                                <h4 class="media-heading"><a href="#">Product name</a></h4>
-                                <h5 class="media-heading"> by <a href="#">Brand name</a></h5>
-                                <span>Status: </span><span class="text-success"><strong>In Stock</strong></span>
+    <main class="clearfix">
+        <div>
+            <div class="cart-header row hidden-xs hidden-sm">
+                <div class="col-sm-7 total-items">Total Items</div>
+                <div class="col-sm-5">
+                	<div class="row">
+                    	<div class="col-sm-4 text-center">Size</div>
+						<div class="col-sm-4 text-center">Quantity</div>
+						<div class="col-sm-4 text-center">Price</div>
+                    </div>
+                </div>
+            </div>    
+            <div class="cart-items">
+                    <div class="col-xs-12 col-sm-4 col-md-2 text-center"><img src="assets/images/T1.jpg" width="151" height="154" alt=""/></div>
+                    <div class="col-xs-10 col-xs-offset-1  col-sm-offset-0 col-sm-8 col-md-10">
+                   	<div class="row">
+                        <div class="col-md-6 item-short-desc">
+                            <h3 class="no-margin">Solid Green Cotton Tshirt</h3>
+                            <p class="no-margin">Style #: MS13KT1906</p>
+                            <p class="no-margin">Colour: Blue</p>
+                        </div>
+                        <div class="col-md-6">
+							<div class="row">
+							<div class="col-md-4 text-center">
+								<span class="visible-xs visible-sm">Size: </span>
+								<select class="form-control">
+								<option value="S" selected>S</option>
+								<option value="M">M</option>
+								<option value="XL">XL</option>
+								<option value="XXL">XXL</option>
+							</select>
+							</div>
+							<div class="col-md-4 text-center"><span class="visible-xs visible-sm">QTY: </span><input type="text" class="form-control text-center" id="exampleInput" value="2"></div>
+							<div class="col-md-4 text-center"><span class="glyphicon glyphicon-usd"></span>19.9</div>
+							</div>
+                    	</div>
+                        </div>
+                    <div class="row">
+                        <div class="col-md-6 col-lg-6">
+                            <div class="nav">
+                                <a href="#" class="btn btn-default">Edit</a>
+                                <a href="#" class="btn btn-default"><span></span>Remove</a>
+                                <a href="#" class="btn btn-default">Save for later</a>
                             </div>
-                        </div></td>
-                        <td class="col-sm-1 col-md-1" style="text-align: center">
-                        <input type="email" class="form-control" id="exampleInput" value="2">
-                        </td>
-                        <td class="col-sm-1 col-md-1 text-center"><strong>$4.87</strong></td>
-                        <td class="col-sm-1 col-md-1 text-center"><strong>$14.61</strong></td>
-                        <td class="col-sm-1 col-md-1">
-                        <button type="button" class="btn btn-danger">
-                            <span class="glyphicon glyphicon-remove"></span> Remove
-                        </button></td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-6">
-                        <div class="media">
-                            <a class="thumbnail pull-left" href="#"> <img class="media-object" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style="width: 72px; height: 72px;"> </a>
-                            <div class="media-body">
-                                <h4 class="media-heading"><a href="#">Product name</a></h4>
-                                <h5 class="media-heading"> by <a href="#">Brand name</a></h5>
-                                <span>Status: </span><span class="text-warning"><strong>Leaves warehouse in 2 - 3 weeks</strong></span>
-                            </div>
-                        </div></td>
-                        <td class="col-md-1" style="text-align: center">
-                        <input type="email" class="form-control" id="exampleInputEmail1" value="3">
-                        </td>
-                        <td class="col-md-1 text-center"><strong>$4.99</strong></td>
-                        <td class="col-md-1 text-center"><strong>$9.98</strong></td>
-                        <td class="col-md-1">
-                        <button type="button" class="btn btn-danger">
-                            <span class="glyphicon glyphicon-remove"></span> Remove
-                        </button></td>
-                    </tr>
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <td>   </td>
-                        <td>   </td>
-                        <td>   </td>
-                        <td><h5>Subtotal<br>Estimated shipping</h5><h3>Total</h3></td>
-                        <td class="text-right"><h5><strong>$24.59<br>$6.94</strong></h5><h3>$31.53</h3></td>
-                    </tr>
-                    <tr>
-                        <td>   </td>
-                        <td>   </td>
-                        <td>   </td>
-                        <td>
-                        <button type="button" class="btn btn-default">
-                            <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
-                        </button></td>
-                        <td>
-                        <button type="button" class="btn btn-success">
-                            Checkout <span class="glyphicon glyphicon-play"></span>
-                        </button></td>
-                    </tr>
-                </tfoot>
-            </table>
+                        </div>
+                    </div>
+                    </div>
+            </div>              
         </div>
-    </div>
+    </main>
 
 </div>
 

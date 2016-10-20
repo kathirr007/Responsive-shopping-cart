@@ -96,8 +96,7 @@ gulp.task('connect', function(){
 gulp.task('browsersync', function(){
 	browsersync({
     server: {
-        baseDir: outputDir,
-        index: 'index.html'
+        baseDir: outputDir
     },
     open: true,
     notify: true

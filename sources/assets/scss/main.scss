@@ -5,6 +5,7 @@
 @import "partials/variables";
 @import "partials/base";
 @import "partials/mixins";
+@import "partials/mediaqueries";
 
 
 .flex {
@@ -17,4 +18,10 @@
 header.page-title h1 {
 	font-size:5rem;
 	text-transform:uppercase;
+	height:2em;	
+}
+
+.cart-table {
+	border-top:1px solid #ddd;
+	margin-bottom:0px;
 }

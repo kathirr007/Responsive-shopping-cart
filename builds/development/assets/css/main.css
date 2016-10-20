@@ -5850,6 +5850,10 @@ body {
   font-size: 16px;
   color: #444444; }
 
+@media screen and (max-width: 767px) {
+  .total-items {
+    text-align: right; } }
+
 .flex {
   display: -webkit-box;
   display: -webkit-flex;
@@ -5860,6 +5864,11 @@ body {
 
 header.page-title h1 {
   font-size: 5rem;
-  text-transform: uppercase; }
+  text-transform: uppercase;
+  height: 2em; }
+
+.cart-table {
+  border-top: 1px solid #ddd;
+  margin-bottom: 0px; }
 
 /*# sourceMappingURL=maps/main.css.map */

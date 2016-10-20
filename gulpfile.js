@@ -46,7 +46,8 @@ gulp.task('clean', function(){
 
 gulp.task('fonts', function(){
 	gulp.src(fonts)
-	.pipe(gulp.dest(outputDir + 'assets/fonts'));
+	.pipe(gulp.dest(outputDir + 'assets/fonts'))
+	.pipe($.connect.reload())
 });
 
 gulp.task('sass', ['fonts'], function(){
@@ -55,13 +56,15 @@ gulp.task('sass', ['fonts'], function(){
 	.pipe($.sass(sassOpts).on('error', $.sass.logError))
 	.pipe($.autoprefixer({browsers : ["Android 2.3","Android >= 4","Chrome >= 20","Firefox >= 24","Explorer >= 8","iOS >= 6","Opera >= 12","Safari >= 6"]}))
 	.pipe($.sourcemaps.write('./maps'))
-	.pipe(gulp.dest(outputDir + 'assets/css/'));
+	.pipe(gulp.dest(outputDir + 'assets/css/'))
+	.pipe($.connect.reload())
 });
 
 gulp.task('html', function(){
 	gulp.src(sourceDir + '*.html')
 	.pipe($.if(env==='production', $.htmlmin({collapseWhitespace: true})))
-	.pipe(gulp.dest(outputDir));
+	.pipe(gulp.dest(outputDir))
+	.pipe($.connect.reload())
 });
 gulp.task('images', function(){
 	gulp.src(imgSources)
@@ -71,13 +74,15 @@ gulp.task('images', function(){
 		svgoPlugin: [{removeViewBox: false}],
 		use: [pngcrush()]
 	})))
-	.pipe(gulp.dest(outputDir + 'assets/images'));
+	.pipe(gulp.dest(outputDir + 'assets/images'))
+	.pipe($.connect.reload())
 });
 
 gulp.task('js', function(){
 	gulp.src(jsSources)
 	.pipe($.if(env==='production', $.uglify()))
-	.pipe(gulp.dest(outputDir + 'assets/js'));
+	.pipe(gulp.dest(outputDir + 'assets/js'))
+	.pipe($.connect.reload())
 });
 
 gulp.task('json', function(){
@@ -89,7 +94,8 @@ gulp.task('json', function(){
 gulp.task('connect', function(){
 	$.connect.server({
 		root: outputDir,
-		livereload: true
+		livereload: true,
+		open:true
 	});
 });
 
@@ -104,11 +110,11 @@ gulp.task('browsersync', function(){
 });
 
 gulp.task('watch', function(){
-	gulp.watch(jsSources, ['js', browsersync.reload]);
-	gulp.watch(jsonSources, ['json', browsersync.reload]);
-	gulp.watch(sassSources, ['sass', browsersync.reload]);
-	gulp.watch(imgSources, ['images', browsersync.reload]);
-	gulp.watch(htmlSources, ['html', browsersync.reload]);
+	gulp.watch(jsSources, ['js']);
+	gulp.watch(jsonSources, ['json']);
+	gulp.watch(sassSources, ['sass']);
+	gulp.watch(imgSources, ['images']);
+	gulp.watch(htmlSources, ['html']);
 });
 
-gulp.task('default', ['html', 'sass', 'js', 'images', 'browsersync',  'json', 'watch']);
+gulp.task('default', ['html', 'sass', 'js', 'images', 'connect',  'json', 'watch']);

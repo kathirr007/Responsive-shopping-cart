@@ -54,6 +54,12 @@ header.page-title {
    text-align:center;
    padding:10px;
  }
+ .checkout-footer div {
+   text-align:center !important;
+ }
+.checkout-footer .row:nth-child(2) div {
+  margin:10px 0px;
+}
  .arrange-top {
    display:table-header-group;
  } 

@@ -8,6 +8,33 @@
 @import "partials/mediaqueries";
 
 
+// Override Bootstrap's Button and Form-control 
+.btn, .form-control {
+	border-radius:0px !important;
+}
+
+.text-upper {
+	text-transform:uppercase;
+}
+// custom font colors
+h1, h2, h3, h4, h5, h6 {
+	color:$headingcolor;
+}
+
+a {
+	color:$basecolor;
+	text-decoration:underline;
+}
+
+a:hover, a:visited, a:focus, a:active {
+	color:$headingcolor;
+}
+
+a.btn {
+	text-decoration:none;
+}
+
+// custom font colors ends
 header.page-title {
 	height:7em;
 }
@@ -68,4 +95,12 @@ header.page-title h1 {
 }
 .item-short-desc {
 	margin:0 0 2em 0;
+}
+
+img.visible-xs {
+	margin:0 auto !important;
+}
+.sign-in-mbl {
+	padding:1.5em;
+	border-top:1px solid $bordercolor;
 }

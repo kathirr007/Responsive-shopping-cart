@@ -5927,6 +5927,9 @@ a:hover, a:visited, a:focus, a:active {
 a.btn {
   text-decoration: none; }
 
+s {
+  color: #dadada; }
+
 header.page-title {
   height: 7em; }
 

@@ -28,7 +28,7 @@ fonts = [bootstrapSources + 'assets/fonts/**/*', sourceDir + 'assets/fonts/*.*']
 imgSources = [sourceDir + 'assets/images/**/*'];
 
 jsSources = [nodeModules + 'jquery/dist/jquery.min.js', bootstrapSources + 'assets/javascripts/bootstrap.min.js', sourceDir + 'assets/js/*.js'];
-sassSources = [sourceDir + 'assets/scss/**/*'];
+sassSources = [sourceDir + 'assets/scss/**/*.scss'];
 htmlSources = [sourceDir + '*.html'];
 jsonSources = [sourceDir + 'assets/json/*.json'];
 

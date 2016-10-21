@@ -43,10 +43,22 @@ header.page-title h1 {
 	padding:0 0px 10px 0px;
 }
 .cart-items {
-	padding:1.5em 0;
+	padding:1.25em 0;
 /* 	margin-bottom:1em; */
 	border-bottom:solid 1px $basecolor;
 }
+.item-size, .item-price {
+	padding:8px
+}
+
+.item-price .glyphicon {
+	
+}
+.item-price h3 {
+	display:inline-block !important;
+	margin:0 !important;
+}
+
 .cart-items:last-child{
 	border-bottom:0;
 }

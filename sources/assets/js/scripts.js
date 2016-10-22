@@ -14,18 +14,54 @@ window.ondomContentLoaded = (function() {
     };
     xmlhttp.open("GET", url, true);
     xmlhttp.send();
+        function formatPrice(n) { return n > 9 ? "" + n : "0" + n; }
 
+        function sum(itemPrices){
+             
+         if (toString.call(itemPrices) !== "[object Array]")
+            return false;
+            var total =  0;
+            for(i=0; i<itemPrices.length; i++)
+              {                  
+                if(isNaN(itemPrices[i])){
+                continue;
+                 }
+                  total += Number(itemPrices[i]);
+               }
+             return total;
+            }
+        function calcDiscount(subTotal, totalQnty){
+            var discount = 0;
+            if (totalQnty == 3) {
+                discount = ((subTotal/100)*5);
+            } else if (totalQnty > 3 && totalQnty <= 6) {
+                discount = ((subTotal/100)*10);
+            } else if (totalQnty >= 7 ) {
+                discount = ((subTotal/100)*25);
+            } else {
+                discount = 0;
+            }
+            return discount;
+        }
+        function calcShipping(subTotal){
+            var shipping = 0;
+            if (subTotal >= 50) {
+                shipping = 0;
+            } else if (subTotal < 50 ) {
+                shipping = ((subTotal/100)*5);
+            } else {
+                shipping = ((subTotal/100)*5);
+            }
+            return shipping;
+        }        
 
     function myFunction(response) {
         var cart = JSON.parse(response),
             productsInCart = cart.productsInCart,
             i, cartItemsList = "",
-            subTotal, discount, estimatedTotal, itemTotalPrice, pricearray = [];
+            subTotal, discount, estimatedTotal, shipping, shippingPrice="", subTotalPrice="", discountPrice="", estimatedTotalPrice="", pricearray = [], quantityarray = [];
 
-        console.log(productsInCart);
-
-        function formatPrice(n) {
-            return n > 9 ? "" + n : "0" + n; }
+console.log(productsInCart);
 
         for (i = 0; i < productsInCart.length; i++) {
             var productId = productsInCart[i].p_id.toUpperCase(),
@@ -42,7 +78,12 @@ window.ondomContentLoaded = (function() {
                 productStyle = productsInCart[i].p_style.toUpperCase(),
                 currency = productsInCart[i].c_currency.toUpperCase(),
                 quantity = productsInCart[i].p_quantity;
+                productsInCart[i].testVariable = productsInCart[i].p_quantity*productsInCart[i].p_price;
+                pricearray.push(productPrice*quantity);
+                quantityarray.push(quantity);
 
+                console.log(pricearray);
+                console.log(quantityarray);
 
             cartItemsList += '<div class="cart-items clearfix">\
                     <div class="col-xs-12 col-sm-4 col-md-2 text-center"><img src="assets/images/T' + (i + 1) + '.jpg" width="151" height="154" alt="" /></div>\
@@ -96,20 +137,42 @@ window.ondomContentLoaded = (function() {
                         </div>\
                     </div>\
                 </div>';
-
         }
 
 
-        for (j = 0; j < productsInCart.length; j++) {
-            var pricearray = [];
-            var itemTotalPrice = productsInCart[j].p_quantity * productsInCart[j].p_price;
-            pricearray = pricearray.push(itemTotalPrice);
 
-            console.log(itemTotalPrice);
-        }
+
+subTotal = sum(pricearray);
+formatedsubTotal = formatPrice(sum(pricearray).toFixed(2));
+totalQnty = sum(quantityarray);
+discount = calcDiscount(subTotal, totalQnty);
+formateddiscount = formatPrice(calcDiscount(subTotal, totalQnty).toFixed(2));
+shipping = calcShipping(subTotal);
+formatedshipping = formatPrice(calcShipping(subTotal).toFixed(2));
+estimatedTotal = subTotal - discount + shipping;
+formatedestimatedTotal = formatPrice((estimatedTotal).toFixed(2));
+subTotalPrice += '<sup>'+currency+' </sup><h3>'+formatedsubTotal+'</h3>';
+discountPrice += '<h3>- </h3><sup> '+currency+' </sup><h3>'+formateddiscount+'</h3>';
+estimatedTotalPrice += '<sup>'+currency+' </sup><h3>'+formatedestimatedTotal+'</h3>';
+if (shipping == 0){
+    shippingPrice += 'FREE';
+} else {
+    shippingPrice += '<sup>'+currency+' </sup><h3>'+formatedshipping+'</h3>';
+}
+
+console.log(subTotal);
+console.log(totalQnty);
+console.log(discount);
+console.log(estimatedTotal);
+
         document.getElementById('itemsInCart').innerHTML = cartItemsList;
+        document.getElementById('subTotal').innerHTML = subTotalPrice;
+        document.getElementById('discountTotal').innerHTML = discountPrice;
+        document.getElementById('shippingTotal').innerHTML = shippingPrice;
+        document.getElementById('estimatedTotal').innerHTML = estimatedTotalPrice;
         totalItems = $(".cart-items").length;
-        $('.total-items').html($('<div/>', { class: 'total-items' }).html(totalItems + ' items' + pricearray));
+        $('.total-items').html($('<div/>', { class: 'total-items' }).html(totalItems + ' items'));
+//         $('#estimatedTotal').append(estimatedTotalPrice);
     }
 
 

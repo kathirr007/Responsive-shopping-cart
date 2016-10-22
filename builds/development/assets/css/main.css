@@ -4549,7 +4549,8 @@ header.page-title h1 {
 .item-price {
   padding: 8px; }
 
-.item-price h3 {
+.item-price h3,
+*[id*=otal] h3 {
   display: inline-block !important;
   margin: 0 !important; }
 

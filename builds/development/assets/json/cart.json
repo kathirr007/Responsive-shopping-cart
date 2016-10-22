@@ -37,9 +37,9 @@
                 "code": "xl"
             }]
         },
-        "p_quantity": 2,
-        "p_originalprice": 11.0,
-        "p_price": 11.0,
+        "p_quantity": 1,
+        "p_originalprice": 8.0,
+        "p_price": 8.0,
         "c_currency": "$"
     }, {
         "p_id": "2",

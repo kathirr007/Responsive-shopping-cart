@@ -149,13 +149,13 @@ shipping = calcShipping(subTotal);
 formatedshipping = formatPrice(calcShipping(subTotal).toFixed(2));
 estimatedTotal = subTotal - discount + shipping;
 formatedestimatedTotal = formatPrice((estimatedTotal).toFixed(2));
-subTotalPrice += '<sup>'+window.currency+' </sup><h3>'+formatedsubTotal+'</h3>';
-discountPrice += '<h3>- </h3><sup> '+window.currency+' </sup><h3>'+formateddiscount+'</h3>';
-estimatedTotalPrice += '<sup>'+window.currency+' </sup><h3>'+formatedestimatedTotal+'</h3>';
+subTotalPrice += '<sup>'+currency+' </sup><h3>'+formatedsubTotal+'</h3>';
+discountPrice += '<h3>- </h3><sup> '+currency+' </sup><h3>'+formateddiscount+'</h3>';
+estimatedTotalPrice += '<sup>'+currency+' </sup><h3>'+formatedestimatedTotal+'</h3>';
 if (shipping === 0){
     shippingPrice += 'FREE';
 } else {
-    shippingPrice += '<sup>'+window.currency+' </sup><h3>'+formatedshipping+'</h3>';
+    shippingPrice += '<sup>'+currency+' </sup><h3>'+formatedshipping+'</h3>';
 }
 
         document.getElementById('itemsInCart').innerHTML = cartItemsList;

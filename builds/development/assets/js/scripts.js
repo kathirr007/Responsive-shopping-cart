@@ -1,10 +1,8 @@
 /*jshint multistr: true */
 window.ondomContentLoaded = (function() {
     var xmlhttp = new XMLHttpRequest(),
-        url = "assets/json/cart.json";
-
-
-    console.log(url);
+        url = "assets/json/cart.json",
+        currency = "";
 
 
     xmlhttp.onreadystatechange = function() {
@@ -15,6 +13,7 @@ window.ondomContentLoaded = (function() {
     xmlhttp.open("GET", url, true);
     xmlhttp.send();
         function formatPrice(n) { return n > 9 ? "" + n : "0" + n; }
+
 
         function sum(itemPrices){
              
@@ -55,6 +54,7 @@ window.ondomContentLoaded = (function() {
             return shipping;
         }        
 
+
     function myFunction(response) {
         var cart = JSON.parse(response),
             productsInCart = cart.productsInCart,
@@ -81,9 +81,6 @@ console.log(productsInCart);
                 productsInCart[i].testVariable = productsInCart[i].p_quantity*productsInCart[i].p_price;
                 pricearray.push(productPrice*quantity);
                 quantityarray.push(quantity);
-
-                console.log(pricearray);
-                console.log(quantityarray);
 
             cartItemsList += '<div class="cart-items clearfix">\
                     <div class="col-xs-12 col-sm-4 col-md-2 text-center"><img src="assets/images/T' + (i + 1) + '.jpg" width="151" height="154" alt="" /></div>\
@@ -142,6 +139,7 @@ console.log(productsInCart);
 
 
 
+
 subTotal = sum(pricearray);
 formatedsubTotal = formatPrice(sum(pricearray).toFixed(2));
 totalQnty = sum(quantityarray);
@@ -151,19 +149,14 @@ shipping = calcShipping(subTotal);
 formatedshipping = formatPrice(calcShipping(subTotal).toFixed(2));
 estimatedTotal = subTotal - discount + shipping;
 formatedestimatedTotal = formatPrice((estimatedTotal).toFixed(2));
-subTotalPrice += '<sup>'+currency+' </sup><h3>'+formatedsubTotal+'</h3>';
-discountPrice += '<h3>- </h3><sup> '+currency+' </sup><h3>'+formateddiscount+'</h3>';
-estimatedTotalPrice += '<sup>'+currency+' </sup><h3>'+formatedestimatedTotal+'</h3>';
-if (shipping == 0){
+subTotalPrice += '<sup>'+window.currency+' </sup><h3>'+formatedsubTotal+'</h3>';
+discountPrice += '<h3>- </h3><sup> '+window.currency+' </sup><h3>'+formateddiscount+'</h3>';
+estimatedTotalPrice += '<sup>'+window.currency+' </sup><h3>'+formatedestimatedTotal+'</h3>';
+if (shipping === 0){
     shippingPrice += 'FREE';
 } else {
-    shippingPrice += '<sup>'+currency+' </sup><h3>'+formatedshipping+'</h3>';
+    shippingPrice += '<sup>'+window.currency+' </sup><h3>'+formatedshipping+'</h3>';
 }
-
-console.log(subTotal);
-console.log(totalQnty);
-console.log(discount);
-console.log(estimatedTotal);
 
         document.getElementById('itemsInCart').innerHTML = cartItemsList;
         document.getElementById('subTotal').innerHTML = subTotalPrice;
@@ -172,7 +165,6 @@ console.log(estimatedTotal);
         document.getElementById('estimatedTotal').innerHTML = estimatedTotalPrice;
         totalItems = $(".cart-items").length;
         $('.total-items').html($('<div/>', { class: 'total-items' }).html(totalItems + ' items'));
-//         $('#estimatedTotal').append(estimatedTotalPrice);
     }
 
 

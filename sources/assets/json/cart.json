@@ -47,7 +47,7 @@
                }
             ]
          },
-         "p_quantity":1,
+         "p_quantity":2,
          "p_originalprice":11.0,
          "p_price":11.0,
          "c_currency":"$"
@@ -63,7 +63,7 @@
          },
          "p_selected_size":{  
             "name":"small",
-            "code":"s"
+            "code":"m"
          },
          "p_available_options":{  
             "colors":[  
@@ -167,7 +167,7 @@
          },
          "p_selected_size":{  
             "name":"small",
-            "code":"s"
+            "code":"xxl"
          },
          "p_available_options":{  
             "colors":[  

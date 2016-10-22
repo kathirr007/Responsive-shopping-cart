@@ -16,12 +16,12 @@
     <div class="container">
         <header class="page-title">
             <h1 class="col-xs-7 col-md-12 pull-left">Your Shopping Bag</h1>
-            <h2 class="col-xs-5 total-items visible-xs visible-sm pull-right">Total Items</h2>
+            <h2 class="col-xs-5 total-items visible-xs visible-sm pull-right text-uppercase">Total Items</h2>
         </header>
         <main class="clearfix cart">
             <div>
                 <div class="cart-header row hidden-xs hidden-sm">
-                    <div class="col-sm-7 total-items">Total Items</div>
+                    <div class="col-sm-7 total-items text-uppercase">Total Items</div>
                     <div class="col-sm-5">
                         <div class="row">
                             <div class="col-sm-4 text-center">Size</div>
@@ -30,55 +30,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="cart-items clearfix">
-                    <div class="col-xs-12 col-sm-4 col-md-2 text-center"><img src="assets/images/T1.jpg" width="151" height="154" alt="" /></div>
-                    <div class="col-xs-10 col-xs-offset-1  col-sm-offset-0 col-sm-8 col-md-10">
-                        <div class="row">
-                            <div class="col-md-6 item-short-desc">
-                                <h3 class="no-margin text-uppercase">Solid Green Cotton Tshirt</h3>
-                                <p class="no-margin">Style #: MS13KT1906</p>
-                                <p class="no-margin">Colour: Blue</p>
-                            </div>
-                            <div class="clearfix visible-xs visible-sm">
-                            	<div class="col-xs-1">Size: </div>
-                                <div class="col-xs-1">S</div>
-                            </div>
-                            <div class="clearfix visible-xs visible-sm item-qnty">
-                            	<div class="col-xs-2">QTY: </div>
-                                <input type="text" class="text-center col-xs-2" id="Qty" value="2">
-                            </div>
-                            <div class="clearfix visible-xs visible-sm item-price">
-                            	<div class="col-xs-5"><span class="glyphicon glyphicon-usd"></span><h3>19.9</h3></div>
-                            </div>
-                            <div class="col-md-6 hidden-xs hidden-sm">
-                                <div class="row">
-                                    <div style="" class="col-md-4 text-center clearfix item-size">
-                                        <div class="visible-xs visible-sm col-xs-1">Size: </div>
-                                        <div class="col-xs-1 col-md-12">S</div>
-                                    </div>
-                                    <div class="col-md-4 text-center clearfix item-qnty"><div class="visible-xs visible-sm col-xs-1">QTY: </div>
-                                        <input type="text" class="form-control text-center col-xs-1" id="Qty" value="2">
-                                    </div>
-                                    <div class="col-md-4 text-center clearfix col-xs-2 item-price"><span class="glyphicon glyphicon-usd"></span>19.9</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6 col-lg-6">
-                                <div class="edit-items">
-                                    <a href="#" class="btn btn-default">Edit</a>
-                                    <a href="#" class="btn btn-default"><span></span>Remove</a>
-                                    <a href="#" class="btn btn-default">Save for later</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 <div id="itemsInCart">
-                    
                 </div>
-
             </div>
         </main>
         <footer class="clearfix cart-checkout">
@@ -146,37 +99,42 @@
                                         <span class="glyphicon glyphicon-usd"></span>19.9
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                         <div class="checkout-footer">
-                        	<div class="row">
-                            <div class="col-sm-9 col-xs-12 text-right pull-right">
-                            	<div class="row">
-                                	<div class="col-sm-7 hidden-xs clearfix text-uppercase"><a href="#" class="block">Continue Shopping</a></div>
-                                	<div class="col-sm-5"><button id="checkout" class="btn btn-primary">Checkout</button></div>
+                            <div class="row">
+                                <div class="col-sm-9 col-xs-12 text-right pull-right">
+                                    <div class="row">
+                                        <div class="col-sm-7 hidden-xs clearfix text-uppercase"><a href="#" class="block">Continue Shopping</a></div>
+                                        <div class="col-sm-5">
+                                            <button id="checkout" class="btn btn-primary">Checkout</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            </div>
-                        	<div class="row">
-                        	    <div class="col-sm-7 visible-xs clearfix"><a href="#" class="block text-uppercase">Continue Shopping</a></div>
+                            <div class="row">
+                                <div class="col-sm-7 visible-xs clearfix"><a href="#" class="block text-uppercase">Continue Shopping</a></div>
                                 <div class="col-sm-10 col-xs-12 text-right pull-right">
                                     <div class="">
-                                        <img class="hidden-xs" src="assets/images/lock.jpg" width="22" height="24" alt=""/>
-                                            Secure checkout Shopping is always safe and secure <br>
-                                        <img class="visible-xs" src="assets/images/lock.jpg" width="22" height="24" alt=""/>
+                                        <img class="hidden-xs" src="assets/images/lock.jpg" width="22" height="24" alt="" /> Secure checkout Shopping is always safe and secure
+                                        <br>
+                                        <img class="visible-xs" src="assets/images/lock.jpg" width="22" height="24" alt="" />
                                     </div>
                                 </div>
                             </div>
                             <div class="visible-xs sign-in-mbl">
-                        	    <a href="#" class="text-uppercase">SIGN IN</a> to save your cart and have access to your items on mobile, tablet and desktop.
+                                <a href="#" class="text-uppercase">SIGN IN</a> to save your cart and have access to your items on mobile, tablet and desktop.
                             </div>
-                        </div>                        
+                        </div>
                     </div>
                 </section>
             </div>
         </footer>
     </div>
+
+    <script type="text/javascript">
+
+    </script>    
 </body>
 
 </html>

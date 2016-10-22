@@ -5965,7 +5965,7 @@ header.page-title h1 {
 .cart-items {
   padding: 1.25em 0;
   /* 	margin-bottom:1em; */
-  border-bottom: solid 1px #5a5a5a; }
+  border-bottom: solid 1px #dadada; }
 
 .item-size, .item-price {
   padding: 8px; }

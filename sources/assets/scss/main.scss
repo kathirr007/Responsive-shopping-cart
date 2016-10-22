@@ -1,5 +1,5 @@
 //Compass imports
-@import "bootstrap";
+@import "customizedBootstrap";
  
 //Core partials
 @import "partials/variables";
@@ -80,7 +80,6 @@ header.page-title h1 {
 .item-size, .item-price {
 	padding:8px
 }
-
 .item-price .glyphicon {
 	
 }

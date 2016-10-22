@@ -1,9 +1,9 @@
 var gulp = require('gulp'),
-	$ = require('gulp-load-plugins')({ lazy: true });
 	browsersync = require('browser-sync'),
 	pngcrush = require('imagemin-pngcrush'),
 	clean = require('del'),
-	jQuery = require('jquery');
+	jQuery = require('jquery'),
+	$ = require('gulp-load-plugins')({ lazy: true });	
 
 var env,
 	jsSources,
@@ -22,11 +22,10 @@ env = process.env.NODE_ENV || 'development';
 sourceDir = 'sources/';
 outputDir = env == 'development' ? 'builds/development/' : 'builds/production/';
 
-nodeModules = './node_modules/'
+nodeModules = './node_modules/';
 bootstrapSources = nodeModules + 'bootstrap-sass/';
 fonts = [bootstrapSources + 'assets/fonts/**/*', sourceDir + 'assets/fonts/*.*'];
 imgSources = [sourceDir + 'assets/images/**/*'];
-
 jsSources = [nodeModules + 'jquery/dist/jquery.min.js', nodeModules + 'mustache/mustache.min.js', bootstrapSources + 'assets/javascripts/bootstrap.min.js', sourceDir + 'assets/js/*.js'];
 sassSources = [sourceDir + 'assets/scss/**/*.scss'];
 htmlSources = [sourceDir + '*.html'];
@@ -49,24 +48,27 @@ gulp.task('clean', function(){
 gulp.task('fonts', function(){
 	gulp.src(fonts)
 	.pipe(gulp.dest(outputDir + 'assets/fonts'))
-	.pipe($.connect.reload())
+	.pipe($.connect.reload());
 });
 
 gulp.task('sass', ['fonts'], function(){
 	gulp.src(sassSources)
+	.pipe($.jsbeautifier())
 	.pipe($.sourcemaps.init())
 	.pipe($.sass(sassOpts).on('error', $.sass.logError))
 	.pipe($.autoprefixer({browsers : ["Android 2.3","Android >= 4","Chrome >= 20","Firefox >= 24","Explorer >= 8","iOS >= 6","Opera >= 12","Safari >= 6"]}))
 	.pipe($.sourcemaps.write('./maps'))
 	.pipe(gulp.dest(outputDir + 'assets/css/'))
-	.pipe($.connect.reload())
+	.pipe($.connect.reload());
 });
 
 gulp.task('html', function(){
 	gulp.src(sourceDir + '*.html')
+	.pipe($.preprocess())
+	.pipe($.jsbeautifier())
 	.pipe($.if(env==='production', $.htmlmin({collapseWhitespace: true})))
 	.pipe(gulp.dest(outputDir))
-	.pipe($.connect.reload())
+	.pipe($.connect.reload());
 });
 gulp.task('images', function(){
 	gulp.src(imgSources)
@@ -77,18 +79,21 @@ gulp.task('images', function(){
 		use: [pngcrush()]
 	})))
 	.pipe(gulp.dest(outputDir + 'assets/images'))
-	.pipe($.connect.reload())
+	.pipe($.connect.reload());
 });
 
 gulp.task('js', function(){
 	gulp.src(jsSources)
+	.pipe($.preprocess())
 	.pipe($.if(env==='production', $.uglify()))
 	.pipe(gulp.dest(outputDir + 'assets/js'))
-	.pipe($.connect.reload())
+	.pipe($.connect.reload());
 });
 
 gulp.task('json', function(){
 	gulp.src(jsonSources)
+	.pipe($.preprocess())
+	.pipe($.jsbeautifier())
 	.pipe($.if(env==='production', $.jsonminify()))
 	.pipe(gulp.dest(outputDir + 'assets/json'));
 });
@@ -107,7 +112,7 @@ gulp.task('browsersync', function(){
     },
     open: true,
     notify: true
-})
+});
 });
 
 gulp.task('watch', function(){

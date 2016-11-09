@@ -1,4 +1,4 @@
-# A Simple Responsive Shopping Cart page
+# A Simple Dynamic Responsive Shopping Cart page
 
 ### A Simple Responsive Shopping Cart page template
 

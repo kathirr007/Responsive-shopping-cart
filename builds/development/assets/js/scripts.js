@@ -1,5 +1,5 @@
 /*jshint multistr: true */
-window.ondomContentLoaded = (function() {
+window.onload = (function() {
     var xmlhttp = new XMLHttpRequest(),
         url = "assets/json/cart.json",
         currency = "";
@@ -76,11 +76,13 @@ console.log(productsInCart);
                 formatedColor = selectedColor.charAt(0).toUpperCase() + colorSliced,
                 selectedSize = productsInCart[i].p_selected_size.code.toUpperCase(),
                 productStyle = productsInCart[i].p_style.toUpperCase(),
-                currency = productsInCart[i].c_currency.toUpperCase(),
+                // currency = productsInCart[i].c_currency.toUpperCase(),
                 quantity = productsInCart[i].p_quantity;
                 productsInCart[i].testVariable = productsInCart[i].p_quantity*productsInCart[i].p_price;
                 pricearray.push(productPrice*quantity);
                 quantityarray.push(quantity);
+
+            window.currency = productsInCart[i].c_currency.toUpperCase();
 
             cartItemsList += '<div class="cart-items clearfix">\
                     <div class="col-xs-12 col-sm-4 col-md-2 text-center"><img src="assets/images/T' + (i + 1) + '.jpg" width="151" height="154" alt="" /></div>\
@@ -102,9 +104,9 @@ console.log(productsInCart);
                             <div class="clearfix visible-xs visible-sm item-price"><div class="col-xs-5">';
 
             if (formatedOrgPrice !== formatedProPrice) {
-                cartItemsList += '<sup>' + currency + '</sup> <h3><s>' + formatedOrgPrice + '</s></h3><br>';
+                cartItemsList += '<sup>' + window.currency + '</sup> <h3><s>' + formatedOrgPrice + '</s></h3><br>';
             }
-            cartItemsList += '<sup>' + currency + '</sup> <h3>' + formatedProPrice + '</h3></div>\
+            cartItemsList += '<sup>' + window.currency + '</sup> <h3>' + formatedProPrice + '</h3></div>\
                             </div>\
                             <div class="col-md-6 hidden-xs hidden-sm">\
                                 <div class="row">\
@@ -117,9 +119,9 @@ console.log(productsInCart);
                                     </div><div class="col-md-4 text-center clearfix col-xs-2 item-price">';
 
             if (formatedOrgPrice !== formatedProPrice) {
-                cartItemsList += '<sup>' + currency + '</sup> <h3><s>' + formatedOrgPrice + '</s></h3><br>';
+                cartItemsList += '<sup>' + window.currency + '</sup> <h3><s>' + formatedOrgPrice + '</s></h3><br>';
             }
-            cartItemsList += '<sup>' + currency + '</sup> <h3>' + formatedProPrice + '</h3></div>\
+            cartItemsList += '<sup>' + window.currency + '</sup> <h3>' + formatedProPrice + '</h3></div>\
                                 </div>\
                             </div>\
                         </div>\
@@ -149,13 +151,13 @@ shipping = calcShipping(subTotal);
 formatedshipping = formatPrice(calcShipping(subTotal).toFixed(2));
 estimatedTotal = subTotal - discount + shipping;
 formatedestimatedTotal = formatPrice((estimatedTotal).toFixed(2));
-subTotalPrice += '<sup>'+currency+' </sup><h3>'+formatedsubTotal+'</h3>';
-discountPrice += '<h3>- </h3><sup> '+currency+' </sup><h3>'+formateddiscount+'</h3>';
-estimatedTotalPrice += '<sup>'+currency+' </sup><h3>'+formatedestimatedTotal+'</h3>';
+subTotalPrice += '<sup>'+window.currency+' </sup><h3>'+formatedsubTotal+'</h3>';
+discountPrice += '<h3>- </h3><sup> '+window.currency+' </sup><h3>'+formateddiscount+'</h3>';
+estimatedTotalPrice += '<sup>'+window.currency+' </sup><h3>'+formatedestimatedTotal+'</h3>';
 if (shipping === 0){
     shippingPrice += 'FREE';
 } else {
-    shippingPrice += '<sup>'+currency+' </sup><h3>'+formatedshipping+'</h3>';
+    shippingPrice += '<sup>'+window.currency+' </sup><h3>'+formatedshipping+'</h3>';
 }
 
         document.getElementById('itemsInCart').innerHTML = cartItemsList;

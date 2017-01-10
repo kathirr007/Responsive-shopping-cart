@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Responsive Shopping Cart Template</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/scripts.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <header class="page-title">
+            <h1 class="col-xs-7 col-md-12 pull-left">Your Shopping Bag</h1>
+            <h2 class="col-xs-5 total-items visible-xs visible-sm pull-right text-uppercase">Total Items</h2>
+        </header>
+        <main class="clearfix cart">
+            <div>
+                <div class="cart-header row hidden-xs hidden-sm">
+                    <div class="col-sm-7 total-items text-uppercase">Total Items</div>
+                    <div class="col-sm-5">
+                        <div class="row">
+                            <div class="col-sm-4 text-center">Size</div>
+                            <div class="col-sm-4 text-center">Quantity</div>
+                            <div class="col-sm-4 text-center">Price</div>
+                        </div>
+                    </div>
+                </div>
+                <div id="itemsInCart">
+                </div>
+            </div>
+        </main>
+        <footer class="clearfix cart-checkout">
+            <div class="row">
+                <aside class="col-sm-3 hidden-xs">
+                    <p><strong>Need help
+    or have a question</strong></p>
+                    <p>Call customer service at 1-800-555-5555
+                    </p>
+                    <p><a href="#">chat with one of our stylists</a></p>
+                    <p><a href="#">see return and exchange policy</a></p>
+                </aside>
+                <section class="col-sm-7 col-sm-push-2">
+                    <div class="clearfix">
+                        <div class="checkout-header row">
+                            <div class="col-sm-6 no-padding text-uppercase">Enter Promotion code or Gift Card</div>
+                            <div class="col-sm-6 col-xs-8 col-xs-offset-2 col-sm-offset-0 text-right">
+                                <div class="row">
+                                    <div class="col-xs-7 text-center no-padding">
+                                        <input class="form-control" type="text" vk_14437="subscribed">
+                                    </div>
+                                    <div class="col-xs-5 text-right no-padding">
+                                        <button class="btn btn-default">Apply</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix checkout-body">
+                            <div class=" col-sm-12 no-padding">
+                                <div class="row">
+                                    <div class="col-xs-9">
+                                        <h6 class="no-margin text-uppercase">SUBTOTAL</h6>
+                                    </div>
+                                    <div class="col-xs-3 text-right" id="subTotal">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-9">
+                                        <h6 class="no-margin text-uppercase">PROMOTION CODE <strong>JF10</strong> APPLIED </h6>
+                                    </div>
+                                    <div class="col-xs-3 text-right" id="discountTotal">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-9">
+                                        <h6 class="no-margin text-uppercase">ESTIMATED SHIPPING*</h6>
+                                        <p>You qualified for free shipping because your order is over $50*</p>
+                                    </div>
+                                    <div class="col-xs-3 text-right" id="shippingTotal">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix checkout-total">
+                            <div class=" col-sm-12 no-padding">
+                                <div class="row">
+                                    <div class="col-xs-9">
+                                        <h4 class="no-margin">ESTIMATED TOTAL</h4>
+                                        <p>Tax will be applied during Total</p>
+                                    </div>
+                                    <div class="col-xs-3 text-right" id="estimatedTotal">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="checkout-footer">
+                            <div class="row">
+                                <div class="col-sm-9 col-xs-12 text-right pull-right">
+                                    <div class="row">
+                                        <div class="col-sm-7 hidden-xs clearfix text-uppercase"><a href="#" class="block">Continue Shopping</a></div>
+                                        <div class="col-sm-5">
+                                            <button id="checkout" class="btn btn-primary">Checkout</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-7 visible-xs clearfix"><a href="#" class="block text-uppercase">Continue Shopping</a></div>
+                                <div class="col-sm-10 col-xs-12 text-right pull-right">
+                                    <div class="">
+                                        <img class="hidden-xs" src="assets/images/lock.jpg" width="22" height="24" alt="" /> Secure checkout Shopping is always safe and secure
+                                        <br>
+                                        <img class="visible-xs" src="assets/images/lock.jpg" width="22" height="24" alt="" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="visible-xs sign-in-mbl">
+                                <a href="#" class="text-uppercase">SIGN IN</a> to save your cart and have access to your items on mobile, tablet and desktop.
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </footer>
+    </div>
+    <script type="text/javascript">
+    </script>
+</body>
+
+</html>

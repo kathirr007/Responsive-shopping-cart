@@ -13,7 +13,7 @@
 *.rar
 *.vi
 *.doc
-*.jpg
+# *.jpg
 *~
 
 # OS or Editor folders

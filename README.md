@@ -2,6 +2,8 @@
 
 ### A Simple Responsive Shopping Cart page template
 
+To check live version please checkout **[here](https://kathirr007.github.io/Responsive-shopping-cart/builds/development/)**
+
 In order to Check App functionality, ensure that you have **[Git](http://git-scm.com/downloads)** and **[Node.js](http://nodejs.org)** installed.
 
 Clone a copy of the repo: 

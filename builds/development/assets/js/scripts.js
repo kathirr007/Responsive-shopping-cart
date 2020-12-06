@@ -98,10 +98,10 @@ console.log(productsInCart);
                                 <div class="col-xs-1">' + selectedSize + '</div>\
                             </div>\
                             <div class="clearfix visible-xs visible-sm item-qnty">\
-                                <div class="col-xs-2">QTY: </div>\
+                                <div class="col-xs-3">QTY: </div>\
                                 <input type="text" class="text-center col-xs-2" id="Qty" value="' + quantity + '">\
                             </div>\
-                            <div class="clearfix visible-xs visible-sm item-price"><div class="col-xs-5">';
+                            <div class="clearfix visible-xs visible-sm item-price"><div class="col-xs-6">';
 
             if (formatedOrgPrice !== formatedProPrice) {
                 cartItemsList += '<sup>' + window.currency + '</sup> <h3><s>' + formatedOrgPrice + '</s></h3><br>';

@@ -32,34 +32,35 @@ sassOpts = {
     errLogToConsole: true,
     includePaths: [bootstrapSources + 'assets/stylesheets']
 };
-gulp.task('clean', function() {
+gulp.task('clean', cb => {
     clean(outputDir);
+    cb()
 });
-gulp.task('fonts', function() {
-    gulp.src(fonts)
+gulp.task('fonts', () => {
+    return gulp.src(fonts)
         .pipe(gulp.dest(outputDir + 'assets/fonts'))
         .pipe($.connect.reload());
 });
-gulp.task('sass', ['fonts'], function() {
-    gulp.src(sassSources)
+gulp.task('sass', gulp.parallel('fonts', () => {
+    return gulp.src(sassSources)
         .pipe($.jsbeautifier())
         .pipe($.sourcemaps.init())
         .pipe($.sass(sassOpts).on('error', $.sass.logError))
-        .pipe($.autoprefixer({ browsers: ["Android 2.3", "Android >= 4", "Chrome >= 20", "Firefox >= 24", "Explorer >= 8", "iOS >= 6", "Opera >= 12", "Safari >= 6"] }))
+        .pipe($.autoprefixer({ overrideBrowserslist: ["Android 2.3", "Android >= 4", "Chrome >= 20", "Firefox >= 24", "Explorer >= 8", "iOS >= 6", "Opera >= 12", "Safari >= 6"] }))
         .pipe($.sourcemaps.write('./maps'))
         .pipe(gulp.dest(outputDir + 'assets/css/'))
         .pipe($.connect.reload());
-});
-gulp.task('html', function() {
-    gulp.src(sourceDir + '*.html')
+}));
+gulp.task('html', () => {
+    return gulp.src(sourceDir + '*.html')
         .pipe($.preprocess())
         .pipe($.jsbeautifier())
         .pipe($.if(env === 'production', $.htmlmin({ collapseWhitespace: true })))
         .pipe(gulp.dest(outputDir))
         .pipe($.connect.reload());
 });
-gulp.task('images', function() {
-    gulp.src(imgSources)
+gulp.task('images', () => {
+    return gulp.src(imgSources)
         .pipe($.newer(outputDir + 'assets/images'))
         .pipe($.if(env === 'production', $.imagemin({
             progressive: true,
@@ -69,40 +70,40 @@ gulp.task('images', function() {
         .pipe(gulp.dest(outputDir + 'assets/images'))
         .pipe($.connect.reload());
 });
-gulp.task('js', function() {
-    gulp.src(jsSources)
+gulp.task('js', () => {
+    return gulp.src(jsSources)
         .pipe($.preprocess())
         .pipe($.if(env === 'production', $.uglify()))
         .pipe(gulp.dest(outputDir + 'assets/js'))
         .pipe($.connect.reload());
 });
-gulp.task('json', function() {
-    gulp.src(jsonSources)
+gulp.task('json', () => {
+    return gulp.src(jsonSources)
         .pipe($.preprocess())
         .pipe($.jsbeautifier())
         .pipe($.if(env === 'production', $.jsonminify()))
         .pipe(gulp.dest(outputDir + 'assets/json'));
 });
-gulp.task('connect', function() {
+gulp.task('connect', () => {
     $.connect.server({
         root: outputDir,
         livereload: true
     });
 });
-gulp.task('browsersync', function() {
+gulp.task('browsersync', () => {
     browsersync({
         server: {
             baseDir: outputDir
         },
-        open: true,
+        open: false,
         notify: true
     });
 });
-gulp.task('watch', function() {
-    gulp.watch(jsSources, ['js']);
-    gulp.watch(jsonSources, ['json']);
-    gulp.watch(sassSources, ['sass']);
-    gulp.watch(imgSources, ['images']);
-    gulp.watch(htmlSources, ['html']);
+gulp.task('watch', () => {
+    gulp.watch(jsSources, gulp.series('js'));
+    gulp.watch(jsonSources, gulp.series('json'));
+    gulp.watch(sassSources, gulp.series('sass'));
+    gulp.watch(imgSources, gulp.series('images'));
+    gulp.watch(htmlSources, gulp.series('html'));
 });
-gulp.task('default', ['html', 'sass', 'js', 'images', 'connect', 'json', 'watch']);
+gulp.task('default', gulp.parallel('html', 'sass', 'js', 'images', 'connect', 'json', 'watch'));

@@ -90,12 +90,12 @@ console.log(productsInCart);
                         <div class="row">\
                             <div class="col-md-6 item-short-desc">\
                                 <h3 class="no-margin text-uppercase">' + productVariation + ' ' + productName + '</h3>\
-                                <p class="no-margin">Style #: ' + productStyle + '</p>\
-                                <p class="no-margin">Colour: ' + formatedColor + '</p>\
+                                <p class="no-margin">Style #: <strong>' + productStyle + '</strong></p>\
+                                <p class="no-margin">Colour: <strong>' + formatedColor + '</strong></p>\
                             </div>\
                             <div class="clearfix visible-xs visible-sm">\
                                 <div class="col-xs-1">Size: </div>\
-                                <div class="col-xs-1">' + selectedSize + '</div>\
+                                <div class="col-xs-1"><strong>' + selectedSize + '</strong></div>\
                             </div>\
                             <div class="clearfix visible-xs visible-sm item-qnty">\
                                 <div class="col-xs-3">QTY: </div>\

@@ -44,6 +44,6 @@
     "imagemin-pngcrush": "^7.0.0",
     "jquery": "^3.5.1",
     "mustache": "^4.1.0",
-    "node-sass": "^5.0.0"
+    "node-sass": "^7.0.0"
   }
 }
